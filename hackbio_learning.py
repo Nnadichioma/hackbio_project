@@ -102,7 +102,7 @@ dna_sequence = "ATGCGTAC"
 
 gc = gc_content(dna_sequence)
 print(f"GC content of {dna_sequence}: {gc:.2f}%")
-"""
+
 
 #Write a function to calculate the AT content of a DNA sequence.
 
@@ -126,8 +126,7 @@ def gc_content(sequence):
 result = gc_content("ATGC")
 print(result)
 
-
-"""import pandas as pd
+import pandas as pd
 data = {"calories": [420, 380, 390], "duration": [50, 40, 45]}
 
 df = pd.DataFrame(data)
@@ -135,9 +134,16 @@ df = pd.DataFrame(data)
 #print(df)
 
 print(df.loc[0:2])
+
+
+import seaborn as sns
+import pandas as pd
+df = sns.load_dataset("penguins")
+# scatterplot of bill length vs bill depth
+#sns.scatterplot(df, x="bill_length_mm", y="bill_depth_mm", hue="species", style="sex")
+#sns.histplot(df, x="flipper_length_mm")
+#sns.catplot(df, x="species", y="bill_length_mm")
+#sns.catplot(df, x="species", y="bill_length_mm", kind="swarm", hue="sex")
+#sns.jointplot(df, x="bill_length_mm", y="bill_depth_mm", hue="species", height=4)
+sns.pairplot(data=df, hue="species")
 """
-
-
-
-
-
