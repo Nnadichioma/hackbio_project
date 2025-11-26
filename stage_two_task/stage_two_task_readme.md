@@ -2,14 +2,18 @@
 
 This project performs a complete single-cell RNA-sequencing (scRNA-seq) analysis workflow on human bone marrow. The pipeline includes quality control, normalization, dimensionality reduction, clustering, and automated cell-type annotation using marker-based scoring (decoupler). The analysis follows standard Scanpy procedures and integrates external resources such as Ensembl BioMart and PanglaoDB.
 
-The accompanying Jupyter Notebook (stage\_two\_task`.ipynb`) contains all code used in the analysis.
+The accompanying Jupyter Notebook (`.ipynb`) contains all code used in the analysis.
+
+---
 
 ## **1\. Data Loading and Initial Setup**
 
 The analysis begins by importing all required libraries (Scanpy, Pandas, Decoupler, Matplotlib, Seaborn).  
 The raw dataset is loaded into an `AnnData` object. Gene names are checked and made unique to ensure compatibility with Scanpy functions.
 
-**2\. Identification of Gene Categories (MT, RIBO, HB)**
+---
+
+## **2\. Identification of Gene Categories (MT, RIBO, HB)**
 
 Before QC, key gene categories are identified:
 
@@ -24,7 +28,9 @@ Before QC, key gene categories are identified:
 
 These are later used to evaluate cell quality and detect potentially stressed or dying cells.
 
-**3\. Calculation of QC Metrics**
+---
+
+## **3\. Calculation of QC Metrics**
 
 Scanpy’s built-in QC functions are used to compute:
 
@@ -32,14 +38,17 @@ Scanpy’s built-in QC functions are used to compute:
 
 * Total UMI counts per cell
 
-* Percent mitochondrial content  
+* Percent mitochondrial content
+
 * Percent ribosomal content
 
 * Percent hemoglobin content
 
 These metrics are visualized using violin plots to assess variability and potential quality issues across the dataset.
 
-**4\. QC Filtering**
+---
+
+## **4\. QC Filtering**
 
 Cells and genes are filtered using standard scRNA-seq thresholds:
 
@@ -53,11 +62,15 @@ Ribosomal and hemoglobin percentages are inspected, but not used as strict filte
 
 A scatter plot of total counts vs. gene counts helps identify potential doublets or low-quality cells.
 
-**5\. Doublet Detection**
+---
+
+## **5\. Doublet Detection**
 
 Scrublet is used to identify and score potential doublets. Doublet scores are visualized and flagged cells may be removed depending on quality criteria.
 
-**6\. Normalization and Highly Variable Genes**
+---
+
+## **6\. Normalization and Highly Variable Genes**
 
 After filtering:
 
@@ -69,7 +82,9 @@ After filtering:
 
 These HVGs drive downstream dimensionality reduction and clustering.
 
-**7\. Dimensionality Reduction**
+---
+
+## **7\. Dimensionality Reduction**
 
 To visualize and interpret structure in the data:
 
@@ -79,7 +94,9 @@ To visualize and interpret structure in the data:
 
 * UMAP is used for low-dimensional visualization across clusters and QC metrics.
 
-**8\. Clustering**
+---
+
+## **8\. Clustering**
 
 Leiden clustering is performed at multiple resolutions to explore cluster granularity:
 
@@ -91,7 +108,9 @@ Leiden clustering is performed at multiple resolutions to explore cluster granul
 
 UMAP plots are generated for each resolution to visually inspect the cluster structure.
 
-**9\. Gene Annotation and Integration with External Databases**
+---
+
+## **9\. Gene Annotation and Integration with External Databases**
 
 ### **9.1. Mapping Ensembl IDs to Gene Names**
 
@@ -99,11 +118,13 @@ Ensembl BioMart is queried to retrieve mappings between Ensembl gene IDs and gen
 
 ### **9.2. Loading PanglaoDB Cell-Type Markers**
 
-PanglaoDB marker tables are retrieved using the decoupler’s Omnipath interface.
+PanglaoDB marker tables are retrieved using decoupler’s Omnipath interface.
 
 Markers are cleaned, deduplicated, and mapped to Ensembl IDs to match the dataset.
 
-**10\. Automated Cell-Type Scoring Using decoupler**
+---
+
+## **10\. Automated Cell-Type Scoring Using decoupler**
 
 Marker-based scoring is performed using ULM (univariate linear model):
 
@@ -113,7 +134,9 @@ Marker-based scoring is performed using ULM (univariate linear model):
 
 Scores for each cell type are added to the AnnData object and visualized on UMAP.
 
-**11\. Ranking Markers per Cluster**
+---
+
+## **11\. Ranking Markers per Cluster**
 
 Using the small-resolution clusters (e.g., resolution 0.02):
 
@@ -123,7 +146,9 @@ Using the small-resolution clusters (e.g., resolution 0.02):
 
 * Top markers for each cluster are used to match clusters to cell identities.
 
-**12\. Cell-Type Assignment**
+---
+
+## **12\. Cell-Type Assignment**
 
 Cluster labels (Leiden) are mapped to biological cell types based on:
 
@@ -137,7 +162,9 @@ Cluster labels (Leiden) are mapped to biological cell types based on:
 
 These annotations are stored in `bone_marrow_adata.obs["cell_type"]`.
 
-**13\. Additional Visualization**
+---
+
+## **13\. Additional Visualization**
 
 Multiple visualization methods are used to confirm cluster identity:
 
@@ -153,7 +180,9 @@ Multiple visualization methods are used to confirm cluster identity:
 
 Key markers for B cells, NK cells, and T cells are shown across clusters.
 
-**14\. Output**
+---
+
+## **14\. Output**
 
 The final output includes:
 
@@ -167,4 +196,5 @@ The final output includes:
 
 * decoupler cell-type scoring matrices
 
-All visualizations and analysis steps are contained in the accompanying stage\_two\_task`.ipynb` notebook.
+All visualizations and analysis steps are contained in the accompanying `.ipynb` notebook.
+
