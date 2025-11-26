@@ -2,7 +2,7 @@
 
 This project performs a complete single-cell RNA-sequencing (scRNA-seq) analysis workflow on human bone marrow. The pipeline includes quality control, normalization, dimensionality reduction, clustering, and automated cell-type annotation using marker-based scoring (decoupler). The analysis follows standard Scanpy procedures and integrates external resources such as Ensembl BioMart and PanglaoDB.
 
-The accompanying Jupyter Notebook (https://github.com/Nnadichioma/hackbio_project/blob/main/stage_two_task/stage_two_task.ipynb) contains all the code used in the analysis.
+The accompanying Jupyter Notebook [.ipynb](https://github.com/Nnadichioma/hackbio_project/blob/main/stage_two_task/stage_two_task.ipynb) contains all the code used in the analysis.
 
 ---
 
@@ -118,7 +118,7 @@ Ensembl BioMart is queried to retrieve mappings between Ensembl gene IDs and gen
 
 ### **9.2. Loading PanglaoDB Cell-Type Markers**
 
-PanglaoDB marker tables are retrieved using the decoupler’s Omnipath interface.
+PanglaoDB marker tables are retrieved using decoupler’s Omnipath interface.
 
 Markers are cleaned, deduplicated, and mapped to Ensembl IDs to match the dataset.
 
@@ -196,5 +196,5 @@ The final output includes:
 
 * decoupler cell-type scoring matrices
 
-All visualizations and analysis steps are contained in the accompanying (https://github.com/Nnadichioma/hackbio_project/blob/main/stage_two_task/stage_two_task.ipynb) notebook.
+All visualizations and analysis steps are contained in the accompanying [`.ipynb`](https://github.com/Nnadichioma/hackbio_project/blob/main/stage_two_task/stage_two_task.ipynb) notebook.
 
